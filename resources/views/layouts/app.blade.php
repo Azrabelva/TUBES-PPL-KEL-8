@@ -32,14 +32,13 @@
             padding-top: 30px;
         }
     </style>
-
 </head>
-<body>
 
-{{-- NAVBAR RUKITA STYLE --}}
+<body class="d-flex flex-column min-vh-100">
+
+{{-- NAVBAR --}}
 <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
     <div class="container">
-
         <a class="navbar-brand" href="/">KosNyaman</a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
@@ -47,9 +46,7 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navMenu">
-
             <ul class="navbar-nav ms-auto align-items-center">
-
                 <li class="nav-item me-3">
                     <a href="/" class="nav-link">Beranda</a>
                 </li>
@@ -58,21 +55,19 @@
                     <a href="{{ route('kos.index') }}" class="nav-link">Kos</a>
                 </li>
 
+                <li class="nav-item me-3">
+                    <a href="{{ route('helpdesk') }}" class="nav-link">Pusat Bantuan</a>
+                </li>
 
-                {{-- LOGIN UI --}}
                 @if(!auth()->check())
-    
-    <a href="{{ route('login') }}" class="btn btn-outline-primary btn-login me-2">Masuk</a>
-    <a href="{{ route('register') }}" class="btn btn-primary btn-login">Daftar</a>
-
+                    <a href="{{ route('login') }}" class="btn btn-outline-primary btn-login me-2">Masuk</a>
+                    <a href="{{ route('register') }}" class="btn btn-primary btn-login">Daftar</a>
                 @else
                     <li class="nav-item">
                         <a href="{{ route('logout') }}" class="btn btn-danger btn-login">Logout</a>
                     </li>
                 @endif
-
             </ul>
-
         </div>
     </div>
 </nav>
@@ -81,6 +76,9 @@
 <div class="container container-content">
     @yield('content')
 </div>
+
+{{-- FOOTER (INCLUDE YANG BENAR) --}}
+@include('layouts.footer')
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -39,7 +39,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 
 // ==========================
-// USER (Diarahkan ke KOS INDEX)
+// HELP DESK (FIXED)
+// ==========================
+Route::get('/helpdesk', function () {
+    return view('helpdesk');
+})->name('helpdesk');
+
+// ==========================
+// USER
 // ==========================
 Route::middleware(['auth', 'user'])->group(function () {
     Route::get('/user/dashboard', function () {
@@ -50,8 +57,6 @@ Route::middleware(['auth', 'user'])->group(function () {
 // ==========================
 // CRUD KOS & KAMAR
 // ==========================
-Route::resource('kos', KosController::class)->parameters([
-    'kos' => 'ko'
-]);
+Route::resource('kos', KosController::class);
 
 Route::resource('kamar', KamarController::class);

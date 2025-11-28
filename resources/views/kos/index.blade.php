@@ -54,7 +54,7 @@
 
                     <p class="text-muted mb-1">{{ $k->alamat }}</p>
 
-                    <h6 class="text-danger fw-bold">Rp{{ number_format($k->harga_min ?? 0, 0, ',', '.') }} / bulan</h6>
+                    <h6 class="text-danger fw-bold">Rp{{ number_format($k->kamars()->min('harga') ?? 0, 0, ',', '.') }} / bulan</h6>
 
                     <a href="#" class="btn btn-outline-primary w-100 mt-2">Lihat Detail</a>
                 </div>

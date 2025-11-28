@@ -10,6 +10,7 @@ class KosController extends Controller
     public function index()
     {
         $data = Kos::latest()->paginate(10);
+
         return view('kos.index', compact('data'));
     }
 

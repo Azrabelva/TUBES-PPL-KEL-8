@@ -44,8 +44,8 @@
         <div class="col-md-4 mb-4">
 
             <div class="card shadow-sm">
-                <img src="{{ $k->gambar ?? 'https://via.placeholder.com/400x250' }}"
-                     class="card-img-top" alt="Foto Kos">
+                <img src="{{ $k->foto_kos }}" width="300" height="200"
+                     class="card-img-top mt-1" alt="Foto Kos">
 
                 <div class="card-body">
                     <span class="badge bg-secondary">Kos</span>

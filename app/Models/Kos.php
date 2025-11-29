@@ -15,6 +15,7 @@ class Kos extends Model
         'nama',
         'alamat',
         'deskripsi',
+        'foto_kos'
     ];
 
     public function kamars()

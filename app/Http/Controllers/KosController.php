@@ -25,9 +25,10 @@ class KosController extends Controller
             'nama'      => 'required|string|max:255',
             'alamat'    => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
+            'foto_kos'  => 'nullable|string',
         ]);
 
-        Kos::create($request->only('nama', 'alamat', 'deskripsi'));
+        Kos::create($request->only('nama', 'alamat', 'deskripsi', 'foto_kos'));
 
         return redirect()->route('kos.index')->with('success', 'Kos berhasil ditambahkan');
     }
@@ -49,9 +50,11 @@ class KosController extends Controller
             'nama'      => 'required|string|max:255',
             'alamat'    => 'required|string|max:255',
             'deskripsi' => 'nullable|string',
+            'foto_kos'  => 'nullable|string',
         ]);
 
-        $ko->update($request->only('nama', 'alamat', 'deskripsi'));
+
+        $ko->update($request->only('nama', 'alamat', 'deskripsi', 'foto_kos'));
 
         return redirect()->route('kos.index')->with('success', 'Kos berhasil diupdate');
     }

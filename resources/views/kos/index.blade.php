@@ -56,7 +56,11 @@
 
                     <h6 class="text-danger fw-bold">Rp{{ number_format($k->kamars()->min('harga') ?? 0, 0, ',', '.') }} / bulan</h6>
 
+<<<<<<< HEAD
                     <a href="{{ route('kos.show', $k->id) }}" class="btn btn-outline-primary w-100 mt-2"> Lihat Detail</a>
+=======
+                    <a href="{{ route('kos.show', $k->id) }}" class="btn btn-outline-primary w-100 mt-2">Lihat Detail</a>
+>>>>>>> 6f584b3457d728d4ea99ee87e0f52ab798cf6e40
                 </div>
             </div>
 

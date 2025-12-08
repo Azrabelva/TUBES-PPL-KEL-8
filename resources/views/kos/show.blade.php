@@ -46,9 +46,6 @@
             <h2 class="fw-bold">{{ $kos->nama }}</h2>
             <p class="text-muted mb-2">{{ $kos->alamat }}</p>
 
-<<<<<<< HEAD
-            {{-- Harga Termurah dari kamar --}}
-=======
             {{-- INFORMASI KAMAR --}}
             @php
                 $totalKamar = $kos->kamars->count();
@@ -61,7 +58,6 @@
             </div>
 
             {{-- Harga Termurah --}}
->>>>>>> 6f584b3457d728d4ea99ee87e0f52ab798cf6e40
             <h4 class="text-danger fw-bold">
                 Rp{{ number_format($kos->kamars()->min('harga') ?? 0, 0, ',', '.') }} / bulan
             </h4>
@@ -76,11 +72,7 @@
 
             <hr>
 
-<<<<<<< HEAD
-            {{-- Fasilitas (STATIC — kamu bisa edit bebas) --}}
-=======
             {{-- Fasilitas --}}
->>>>>>> 6f584b3457d728d4ea99ee87e0f52ab798cf6e40
             <h5 class="fw-bold mb-3">Fasilitas</h5>
             <div class="d-flex flex-wrap">
                 <span class="facility-icon">🌐 Wi-Fi</span>
@@ -94,10 +86,6 @@
 
         </div>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 6f584b3457d728d4ea99ee87e0f52ab798cf6e40
         {{-- KOLOM KANAN --}}
         <div class="col-md-4">
 

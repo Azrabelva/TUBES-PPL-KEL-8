@@ -118,3 +118,5 @@
 </div>
 
 @endsection
+
+{{-- task 2  --}}

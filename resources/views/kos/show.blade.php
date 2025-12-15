@@ -54,7 +54,7 @@
 
             <div class="mb-3">
                 <p><strong>Total Seluruh Kamar:</strong> {{ $totalKamar }}</p>
-                <p><strong>Jumlah Kamar Tersedia:</strong> {{ $kamarTersedia }}</p>
+                <p><strong>Kamar Tersedia:</strong> {{ $kamarTersedia }}</p>
             </div>
 
             {{-- Harga Termurah --}}
@@ -90,13 +90,11 @@
         <div class="col-md-4">
 
             <div class="info-box shadow-sm">
-
                 <h5 class="fw-bold mb-3">Informasi Pemilik</h5>
                 <p class="mb-1"><strong>Nama:</strong> {{ $kos->pemilik ?? 'Belum diisi' }}</p>
                 <p class="mb-1"><strong>No. HP:</strong> {{ $kos->kontak ?? 'Belum diisi' }}</p>
 
                 <a href="#" class="btn btn-success w-100 mt-3">Hubungi Pemilik</a>
-
                 <a href="{{ route('kos.index') }}" class="btn btn-secondary w-100 mt-2">Kembali</a>
             </div>
 

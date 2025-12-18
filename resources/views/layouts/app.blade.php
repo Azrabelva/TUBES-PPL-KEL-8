@@ -32,9 +32,12 @@
             padding-top: 30px;
         }
     </style>
+
+    {{-- STYLE KHUSUS PER HALAMAN --}}
+    @yield('styles')
 </head>
 
-<body class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100 @yield('body_class')">
 
 {{-- NAVBAR --}}
 <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
@@ -77,11 +80,14 @@
     @yield('content')
 </div>
 
-{{-- FOOTER (INCLUDE YANG BENAR) --}}
+{{-- FOOTER --}}
 @include('layouts.footer')
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+{{-- SCRIPT KHUSUS PER HALAMAN (opsional, kalau Anda butuh) --}}
+@yield('scripts')
 
 </body>
 </html>

@@ -21,16 +21,27 @@
             {{-- Categories Section --}}
             <div class="row g-4 mb-5">
                 <div class="col-md-6">
-                    <a href="#" class="card text-decoration-none text-dark shadow-sm hover-lift">
-                        <img src="{{ asset('images/kos.jpg') }}" class="card-img-top rounded-top-3" alt="Penyewa Kos">
+                    <a href="#" class="card text-decoration-none text-dark shadow-sm hover-lift h-100">
+                        <div class="ratio ratio-1x1">
+                            <img src="{{ asset('images/anak_kos.jpg') }}"
+                                 class="w-100 h-100 rounded-top-3"
+                                 style="object-fit: cover;"
+                                 alt="Penyewa Kos">
+                        </div>
                         <div class="card-body text-center">
                             <h5 class="card-title fw-bold mb-0">Penyewa Kos</h5>
                         </div>
                     </a>
                 </div>
+
                 <div class="col-md-6">
-                    <a href="#" class="card text-decoration-none text-dark shadow-sm hover-lift">
-                        <img src="{{ asset('images/kos2.jpg') }}" class="card-img-top rounded-top-3" alt="pemilik kos">
+                    <a href="#" class="card text-decoration-none text-dark shadow-sm hover-lift h-100">
+                        <div class="ratio ratio-1x1">
+                            <img src="{{ asset('images/pemilik_kos.jpg') }}"
+                                 class="w-100 h-100 rounded-top-3"
+                                 style="object-fit: cover;"
+                                 alt="Pemilik Kos">
+                        </div>
                         <div class="card-body text-center">
                             <h5 class="card-title fw-bold mb-0">Pemilik Kos</h5>
                         </div>
@@ -50,7 +61,6 @@
                                 <i class="bi bi-laptop fs-4 me-2 text-primary"></i>Produk dan Fitur untuk Penyewa
                             </h5>
                             <p class="card-text">Mengapa percakapan saya dengan pemilik kos di chat hilang?</p>
-                            <a href="#" class="text-decoration-none text-primary fw-semibold">Selengkapnya</a>
                         </div>
                     </div>
                 </div>
@@ -63,7 +73,6 @@
                                 <i class="bi bi-file-earmark-text fs-4 me-2 text-primary"></i>Kebijakan dan Panduan
                             </h5>
                             <p class="card-text">Kebijakan Privasi KosNyaman</p>
-                            <a href="#" class="text-decoration-none text-primary fw-semibold">Selengkapnya</a>
                         </div>
                     </div>
                 </div>
@@ -76,7 +85,6 @@
                                 <i class="bi bi-person-circle fs-4 me-2 text-primary"></i>Akun Penyewa
                             </h5>
                             <p class="card-text">Saya lupa password akun penyewa, apa yang harus saya lakukan?</p>
-                            <a href="#" class="text-decoration-none text-primary fw-semibold">Selengkapnya</a>
                         </div>
                     </div>
                 </div>
@@ -89,7 +97,6 @@
                                 <i class="bi bi-house-door fs-4 me-2 text-primary"></i>Akun Pemilik
                             </h5>
                             <p class="card-text">Bagaimana cara mengubah profil kos saya?</p>
-                            <a href="#" class="text-decoration-none text-primary fw-semibold">Selengkapnya</a>
                         </div>
                     </div>
                 </div>
@@ -102,7 +109,6 @@
                                 <i class="bi bi-shield-check fs-4 me-2 text-primary"></i>Panduan Keamanan
                             </h5>
                             <p class="card-text">Bagaimana menjaga keamanan transaksi sewa kos?</p>
-                            <a href="#" class="text-decoration-none text-primary fw-semibold">Selengkapnya</a>
                         </div>
                     </div>
                 </div>
@@ -115,7 +121,6 @@
                                 <i class="bi bi-journal-text fs-4 me-2 text-primary"></i>Syarat dan Ketentuan
                             </h5>
                             <p class="card-text">Syarat dan Ketentuan Umum penggunaan layanan KosNyaman.</p>
-                            <a href="#" class="text-decoration-none text-primary fw-semibold">Selengkapnya</a>
                         </div>
                     </div>
                 </div>
@@ -148,4 +153,17 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
+@endsection
+
+
+@section('styles')
+<style>
+    .helpdesk-cat-img{
+        width: 100% !important;
+        height: 260px !important;         /* silakan naik/turunkan sesuai selera */
+        object-fit: cover !important;     /* kunci: gambar akan ter-crop rapi */
+        object-position: center !important;
+        display: block !important;
+    }
+</style>
 @endsection

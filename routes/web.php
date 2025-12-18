@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KosController;
 use App\Http\Controllers\KamarController;
 use App\Http\Controllers\AuthController;
@@ -8,9 +9,7 @@ use App\Http\Controllers\AuthController;
 // ==========================
 // HALAMAN UTAMA KE KOS
 // ==========================
-Route::get('/', function () {
-    return redirect()->route('kos.index');
-})->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // ==========================
 // LOGIN

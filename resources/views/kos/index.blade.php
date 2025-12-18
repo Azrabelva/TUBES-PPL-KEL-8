@@ -20,30 +20,45 @@
 {{-- SEARCH BAR --}}
 <div class="container mb-4">
     <div class="card shadow-sm p-3">
-        <div class="row g-3 align-items-center">
+        <form method="GET" action="{{ route('kos.index') }}">
+            <div class="row g-3 align-items-center">
 
-            <div class="col-md-5">
-                <input type="text" class="form-control" placeholder="Cari lokasi kos...">
+                {{-- KEYWORD --}}
+                <div class="col-md-5">
+                    <input type="text"
+                           name="keyword"
+                           class="form-control"
+                           placeholder="Cari lokasi atau nama kos..."
+                           value="{{ request('keyword') }}">
+                </div>
+
+                {{-- KATEGORI --}}
+                <div class="col-md-3">
+                    <select class="form-select" name="kategori">
+                        <option value="">Semua tipe</option>
+                        <option value="Kos Putra"  {{ request('kategori')=='Kos Putra' ? 'selected' : '' }}>Kos Putra</option>
+                        <option value="Kos Putri"  {{ request('kategori')=='Kos Putri' ? 'selected' : '' }}>Kos Putri</option>
+                        <option value="Kos Campur" {{ request('kategori')=='Kos Campur' ? 'selected' : '' }}>Kos Campur</option>
+                    </select>
+                </div>
+
+                {{-- TANGGAL (opsional, belum difilter di controller) --}}
+                <div class="col-md-3">
+                    <input type="date"
+                           name="tanggal"
+                           class="form-control"
+                           value="{{ request('tanggal') }}">
+                </div>
+
+                {{-- BUTTON --}}
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-primary w-100">
+                        Cari
+                    </button>
+                </div>
+
             </div>
-
-            <div class="col-md-3">
-                <select class="form-select">
-                    <option selected>Semua tipe</option>
-                    <option>Kos Putra</option>
-                    <option>Kos Putri</option>
-                    <option>Kos Campur</option>
-                </select>
-            </div>
-
-            <div class="col-md-3">
-                <input type="date" class="form-control">
-            </div>
-
-            <div class="col-md-1">
-                <button class="btn btn-primary w-100">Cari</button>
-            </div>
-
-        </div>
+        </form>
     </div>
 </div>
 
@@ -54,13 +69,14 @@
     <div class="row">
 
         {{-- LOOP DATA KOS --}}
-        @foreach($data as $k)
+        @forelse($data as $k)
         <div class="col-md-4 mb-4">
 
-            <div class="card shadow-sm">
-                <img src="{{ $k->foto_kos }}"
+            <div class="card shadow-sm h-100">
+                <img src="{{ asset(ltrim($k->foto_kos, '/')) }}"
                      class="card-img-top mt-1"
-                     alt="Foto Kos">
+                     alt="Foto Kos"
+                     onerror="this.onerror=null;this.src='{{ asset('images/default-kos.jpg') }}';">
 
                 <div class="card-body">
                     <span class="badge bg-secondary">Kos</span>
@@ -82,10 +98,16 @@
             </div>
 
         </div>
-        @endforeach
+        @empty
+            <p class="text-muted">Data kos tidak ditemukan.</p>
+        @endforelse
 
+    </div>
+
+    {{-- PAGINATION --}}
+    <div class="d-flex justify-content-center mt-4">
+        {{ $data->links() }}
     </div>
 </div>
 
 @endsection
-

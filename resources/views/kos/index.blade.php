@@ -1,5 +1,20 @@
 @extends('layouts.app')
 
+@section('body_class', 'page-kos')
+
+@section('styles')
+<style>
+  /* CSS hanya aktif di halaman KOS */
+  .page-kos .card-img-top{
+    height: 220px;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+</style>
+@endsection
+
 @section('content')
 
 {{-- SEARCH BAR --}}
@@ -43,8 +58,9 @@
         <div class="col-md-4 mb-4">
 
             <div class="card shadow-sm">
-                <img src="{{ $k->foto_kos }}" width="300" height="200"
-                     class="card-img-top mt-1" alt="Foto Kos">
+                <img src="{{ $k->foto_kos }}"
+                     class="card-img-top mt-1"
+                     alt="Foto Kos">
 
                 <div class="card-body">
                     <span class="badge bg-secondary">Kos</span>
@@ -58,11 +74,10 @@
                     </h6>
 
                     {{-- Tombol Lihat Detail --}}
-                    <a href="{{ route('kos.show', $k->id) }}" 
+                    <a href="{{ route('kos.show', $k->id) }}"
                        class="btn btn-outline-primary w-100 mt-2">
                        Lihat Detail
                     </a>
-
                 </div>
             </div>
 
@@ -73,3 +88,4 @@
 </div>
 
 @endsection
+

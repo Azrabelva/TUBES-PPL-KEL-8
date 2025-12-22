@@ -61,6 +61,7 @@
                                 <i class="bi bi-laptop fs-4 me-2 text-primary"></i>Produk dan Fitur untuk Penyewa
                             </h5>
                             <p class="card-text">Mengapa percakapan saya dengan pemilik kos di chat hilang?</p>
+
                         </div>
                     </div>
                 </div>

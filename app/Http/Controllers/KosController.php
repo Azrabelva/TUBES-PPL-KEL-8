@@ -7,9 +7,22 @@ use Illuminate\Http\Request;
 
 class KosController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data = Kos::latest()->paginate(10);
+        // Query dasar
+        $query = Kos::query()->latest();
+        if ($request->filled('keyword')) {
+            $query->where(function ($q) use ($request) {
+                $q->where('nama', 'like', '%' . $request->keyword . '%')
+                  ->orWhere('alamat', 'like', '%' . $request->keyword . '%');
+            });
+        }
+        if ($request->filled('kategori')) {
+            $query->whereHas('kategoris', function ($q) use ($request) {
+                $q->where('nama', $request->kategori);
+            });
+        }
+        $data = $query->paginate(6)->withQueryString();
 
         return view('kos.index', compact('data'));
     }

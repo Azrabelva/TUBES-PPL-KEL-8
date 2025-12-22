@@ -66,6 +66,7 @@ class AuthController extends Controller
     // =====================
     // LOGOUT
     // =====================
+<<<<<<< HEAD
     public function logout(Request $request)
 {
     auth()->logout();
@@ -75,4 +76,11 @@ class AuthController extends Controller
 
     return redirect()->route('login');
 }
+=======
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login');
+    }
+>>>>>>> dbf5348516c77631b2691dbbf0fe565ac3f1d7b3
 }

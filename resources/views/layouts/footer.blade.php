@@ -3,7 +3,11 @@
     <div class="row">
       <div class="col-md-4">
         <div class="d-flex align-items-center mb-2">
+<<<<<<< HEAD
           <img src="{{ asset('images/logokos.png') }}" width="40" height="40" class="rounded-circle me-2" alt="logo">
+=======
+          <img src="{{ asset('images/kos.png') }}" width="40" height="40" class="rounded-circle me-2" alt="logo">
+>>>>>>> dbf5348516c77631b2691dbbf0fe565ac3f1d7b3
           <strong>KosNyaman</strong>
         </div>
         <p class="small text-muted">Dapatkan info kos terbaik hanya di KosNyaman.</p>

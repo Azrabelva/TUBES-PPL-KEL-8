@@ -12,6 +12,42 @@
     object-position: center;
     display: block;
   }
+
+  /* Badge warna per kategori */
+  .badge-kos-putra {
+    background: var(--theme-color);
+    color: #fff;
+  }
+  .badge-kos-putri {
+    background: var(--theme-color);
+    color: #fff;
+  }
+  .badge-kos-campur {
+    background: var(--theme-color);
+    color: #fff;
+  }
+
+  /* Card warna kuning muda khusus halaman KOS */
+  .page-kos .card {
+    background: #fff8e1; /* soft light yellow */
+    border-color: rgba(0,0,0,0.04);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+  }
+  .page-kos .card .card-body { background: transparent; }
+
+  /* Simple pagination styling: make previous/next links larger */
+  .page-kos .simple-pagination a,
+  .page-kos .simple-pagination span {
+    font-size: 1.4rem; /* about twice the normal size */
+    font-weight: 600;
+  }
+  .page-kos .simple-pagination a {
+    color: var(--soft-purple) !important;
+    text-decoration: none;
+  }
+  .page-kos .simple-pagination a:hover {
+    text-decoration: underline;
+  }
 </style>
 @endsection
 
@@ -35,7 +71,7 @@
 
                 {{-- KATEGORI --}}
                 <div class="col-md-4">
-                    <select class="form-select" name="kategori">
+                    <select class="form-select" name="kategori" onchange="this.form.submit()" aria-label="Pilih kategori kos">
                         <option value="">Semua tipe</option>
                         <option value="Kos Putra"  {{ request('kategori')=='Kos Putra' ? 'selected' : '' }}>Kos Putra</option>
                         <option value="Kos Putri"  {{ request('kategori')=='Kos Putri' ? 'selected' : '' }}>Kos Putri</option>
@@ -58,7 +94,17 @@
 
 {{-- LIST KOS --}}
 <div class="container">
-    <h4 class="mb-3">Rekomendasi Hunian</h4>
+
+    @if(request()->filled('kategori'))
+        @php
+            $sel = request('kategori');
+            $filterClass = $sel == 'Kos Putra' ? 'badge-kos-putra' : ($sel == 'Kos Putri' ? 'badge-kos-putri' : ($sel == 'Kos Campur' ? 'badge-kos-campur' : 'bg-secondary'));
+        @endphp
+        <div class="mb-3">
+            <span class="badge {{ $filterClass }}">Filter: {{ $sel }}</span>
+            <a href="{{ route('kos.index') }}" class="ms-2 text-decoration-none">Reset</a>
+        </div>
+    @endif
 
     <div class="row">
 
@@ -73,7 +119,11 @@
                          onerror="this.onerror=null;this.src='{{ asset('images/default-kos.jpg') }}';">
 
                     <div class="card-body">
-                        <span class="badge bg-secondary">Kos</span>
+                        @php
+                            $cat = $k->kategori_kos ?? 'Kos';
+                            $catClass = $cat == 'Kos Putra' ? 'badge-kos-putra' : ($cat == 'Kos Putri' ? 'badge-kos-putri' : ($cat == 'Kos Campur' ? 'badge-kos-campur' : 'bg-secondary'));
+                        @endphp
+                        <span class="badge {{ $catClass }}">{{ $cat }}</span>
 
                         <h5 class="mt-2">{{ $k->nama }}</h5>
 
@@ -100,9 +150,23 @@
 
     </div>
 
-    {{-- PAGINATION --}}
-    <div class="d-flex justify-content-center mt-4">
-        {{ $data->links() }}
+    {{-- SIMPLE PAGINATION (dengan ikon) --}}
+    <div class="d-flex justify-content-between align-items-center mt-4 simple-pagination">
+        <div>
+            @if($data->onFirstPage())
+                <span class="text-muted">&lsaquo; Sebelumnya</span>
+            @else
+                <a href="{{ $data->previousPageUrl() }}" class="text-decoration-none">&lsaquo; Sebelumnya</a>
+            @endif
+        </div>
+
+        <div>
+            @if($data->hasMorePages())
+                <a href="{{ $data->nextPageUrl() }}" class="text-decoration-none">Berikutnya &rsaquo;</a>
+            @else
+                <span class="text-muted">Berikutnya &rsaquo;</span>
+            @endif
+        </div>
     </div>
 </div>
 

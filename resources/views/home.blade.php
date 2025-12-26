@@ -2,12 +2,48 @@
 
 @section('body_class', 'page-home')
 
+@section('styles')
+<style>
+  /* Home page card colors to match Kos */
+  .page-home .card {
+    background: #fff8e1; /* soft light yellow */
+    border-color: rgba(0,0,0,0.04);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+  }
+  .page-home .card .card-body { background: transparent; }
+
+  /* Make diskon badge match theme purple */
+  .page-home .badge.bg-danger {
+    background: var(--theme-color) !important;
+    color: #fff !important;
+  }
+  .page-home .card.border.border-danger {
+    border-color: var(--soft-purple-dark) !important;
+  }
+
+  /* Brand on hero */
+  .brand-hero {
+    font-size: 2rem;
+    color: var(--soft-purple-dark);
+    display: inline-block;
+    letter-spacing: 0.2px;
+  }
+
+  /* Ensure the hero heading matches the brand size */
+  .hero-title {
+    font-size: 2.2rem;
+    line-height: 1.05;
+    margin-bottom: 0.25rem;
+  }
+</style>
+@endsection
+
 @section('content')
 <div class="container">
 
     {{-- HERO / JUDUL --}}
     <div class="mb-5 text-center">
-        <h3 class="fw-bold">Selamat datang di KosNyaman</h3>
+        <h3 class="fw-bold hero-title">Selamat Datang di <span class="brand-hero">KosNyaman</span></h3>
         <p class="text-muted">Temukan kos terbaik sesuai kebutuhanmu</p>
     </div>
 

@@ -12,6 +12,7 @@ class KosController extends Controller
         $query = Kos::query()->latest();
 
         // Filter keyword (nama/alamat)
+        // Jika keyword diisi, lakukan pencarian di seluruh data (nama/alamat) dan abaikan filter kategori
         if ($request->filled('keyword')) {
             $keyword = $request->keyword;
 
@@ -19,11 +20,11 @@ class KosController extends Controller
                 $q->where('nama', 'like', "%{$keyword}%")
                   ->orWhere('alamat', 'like', "%{$keyword}%");
             });
-        }
-
-        // Filter kategori (berdasarkan kolom kategori_kos di tabel kos)
-        if ($request->filled('kategori')) {
-            $query->where('kategori_kos', $request->kategori);
+        } else {
+            // Hanya terapkan filter kategori bila keyword TIDAK diisi
+            if ($request->filled('kategori')) {
+                $query->where('kategori_kos', $request->kategori);
+            }
         }
 
         $data = $query->paginate(6)->withQueryString();

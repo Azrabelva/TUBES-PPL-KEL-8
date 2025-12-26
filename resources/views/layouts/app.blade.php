@@ -28,8 +28,14 @@
             padding: 6px 18px;
             font-weight: 500;
         }
+        .navbar {
+            z-index: 1030;
+        }
         .container-content {
-            padding-top: 30px;
+            padding-top: 80px;
+        }
+        @media (max-width: 576px) {
+            .container-content { padding-top: 110px; }
         }
     </style>
 
@@ -40,7 +46,7 @@
 <body class="d-flex flex-column min-vh-100 @yield('body_class')">
 
 {{-- NAVBAR --}}
-<nav class="navbar navbar-expand-lg bg-white shadow-sm py-3">
+<nav class="navbar navbar-expand-lg bg-white shadow-sm py-3 sticky-top">
     <div class="container">
         <a class="navbar-brand" href="/">KosNyaman</a>
 

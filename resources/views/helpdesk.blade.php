@@ -1,5 +1,27 @@
 @extends('layouts.app') {{-- Pastikan ini mengacu pada layout utama Anda --}}
 
+@section('styles')
+<style>
+    /* Category image */
+    .helpdesk-cat-img{
+        width: 100% !important;
+        height: 260px !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        display: block !important;
+    }
+
+    /* Optional: efek hover halus */
+    .hover-lift{
+        transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .hover-lift:hover{
+        transform: translateY(-2px);
+        box-shadow: 0 .75rem 1.5rem rgba(0,0,0,.08) !important;
+    }
+</style>
+@endsection
+
 @section('content')
 <div class="container py-5">
     <div class="row justify-content-center">
@@ -21,38 +43,21 @@
             {{-- Categories Section --}}
             <div class="row g-4 mb-5">
                 <div class="col-md-6">
-<<<<<<< HEAD
-                    <a href="#" class="card text-decoration-none text-dark shadow-sm hover-lift">
-                        <img src="{{ asset('images/kos.jpg') }}" class="card-img-top rounded-top-3" alt="Penyewa Kos">
-=======
                     <a href="#" class="card text-decoration-none text-dark shadow-sm hover-lift h-100">
-                        <div class="ratio ratio-1x1">
-                            <img src="{{ asset('images/anak_kos.jpg') }}"
-                                 class="w-100 h-100 rounded-top-3"
-                                 style="object-fit: cover;"
-                                 alt="Penyewa Kos">
-                        </div>
->>>>>>> dbf5348516c77631b2691dbbf0fe565ac3f1d7b3
+                        <img src="{{ asset('images/anak_kos.jpg') }}"
+                             class="helpdesk-cat-img rounded-top-3"
+                             alt="Penyewa Kos">
                         <div class="card-body text-center">
                             <h5 class="card-title fw-bold mb-0">Penyewa Kos</h5>
                         </div>
                     </a>
                 </div>
-<<<<<<< HEAD
-                <div class="col-md-6">
-                    <a href="#" class="card text-decoration-none text-dark shadow-sm hover-lift">
-                        <img src="{{ asset('images/kos2.jpg') }}" class="card-img-top rounded-top-3" alt="pemilik kos">
-=======
 
                 <div class="col-md-6">
                     <a href="#" class="card text-decoration-none text-dark shadow-sm hover-lift h-100">
-                        <div class="ratio ratio-1x1">
-                            <img src="{{ asset('images/pemilik_kos.jpg') }}"
-                                 class="w-100 h-100 rounded-top-3"
-                                 style="object-fit: cover;"
-                                 alt="Pemilik Kos">
-                        </div>
->>>>>>> dbf5348516c77631b2691dbbf0fe565ac3f1d7b3
+                        <img src="{{ asset('images/pemilik_kos.jpg') }}"
+                             class="helpdesk-cat-img rounded-top-3"
+                             alt="Pemilik Kos">
                         <div class="card-body text-center">
                             <h5 class="card-title fw-bold mb-0">Pemilik Kos</h5>
                         </div>
@@ -72,11 +77,6 @@
                                 <i class="bi bi-laptop fs-4 me-2 text-primary"></i>Produk dan Fitur untuk Penyewa
                             </h5>
                             <p class="card-text">Mengapa percakapan saya dengan pemilik kos di chat hilang?</p>
-<<<<<<< HEAD
-                            <a href="#" class="text-decoration-none text-primary fw-semibold">Selengkapnya</a>
-=======
-
->>>>>>> dbf5348516c77631b2691dbbf0fe565ac3f1d7b3
                         </div>
                     </div>
                 </div>
@@ -89,10 +89,6 @@
                                 <i class="bi bi-file-earmark-text fs-4 me-2 text-primary"></i>Kebijakan dan Panduan
                             </h5>
                             <p class="card-text">Kebijakan Privasi KosNyaman</p>
-<<<<<<< HEAD
-                            <a href="#" class="text-decoration-none text-primary fw-semibold">Selengkapnya</a>
-=======
->>>>>>> dbf5348516c77631b2691dbbf0fe565ac3f1d7b3
                         </div>
                     </div>
                 </div>
@@ -105,10 +101,6 @@
                                 <i class="bi bi-person-circle fs-4 me-2 text-primary"></i>Akun Penyewa
                             </h5>
                             <p class="card-text">Saya lupa password akun penyewa, apa yang harus saya lakukan?</p>
-<<<<<<< HEAD
-                            <a href="#" class="text-decoration-none text-primary fw-semibold">Selengkapnya</a>
-=======
->>>>>>> dbf5348516c77631b2691dbbf0fe565ac3f1d7b3
                         </div>
                     </div>
                 </div>
@@ -121,10 +113,6 @@
                                 <i class="bi bi-house-door fs-4 me-2 text-primary"></i>Akun Pemilik
                             </h5>
                             <p class="card-text">Bagaimana cara mengubah profil kos saya?</p>
-<<<<<<< HEAD
-                            <a href="#" class="text-decoration-none text-primary fw-semibold">Selengkapnya</a>
-=======
->>>>>>> dbf5348516c77631b2691dbbf0fe565ac3f1d7b3
                         </div>
                     </div>
                 </div>
@@ -137,10 +125,6 @@
                                 <i class="bi bi-shield-check fs-4 me-2 text-primary"></i>Panduan Keamanan
                             </h5>
                             <p class="card-text">Bagaimana menjaga keamanan transaksi sewa kos?</p>
-<<<<<<< HEAD
-                            <a href="#" class="text-decoration-none text-primary fw-semibold">Selengkapnya</a>
-=======
->>>>>>> dbf5348516c77631b2691dbbf0fe565ac3f1d7b3
                         </div>
                     </div>
                 </div>
@@ -153,10 +137,6 @@
                                 <i class="bi bi-journal-text fs-4 me-2 text-primary"></i>Syarat dan Ketentuan
                             </h5>
                             <p class="card-text">Syarat dan Ketentuan Umum penggunaan layanan KosNyaman.</p>
-<<<<<<< HEAD
-                            <a href="#" class="text-decoration-none text-primary fw-semibold">Selengkapnya</a>
-=======
->>>>>>> dbf5348516c77631b2691dbbf0fe565ac3f1d7b3
                         </div>
                     </div>
                 </div>
@@ -165,44 +145,29 @@
         </div>
     </div>
 </div>
-
-{{-- FOOTER DIHAPUS — Footer sudah dipanggil otomatis lewat layouts.app --}}
 @endsection
 
-{{-- Style & Script tetap dipakai --}}
 @section('scripts')
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('searchHelp').addEventListener('keyup', function() {
-        let value = this.value.toLowerCase();
+    const input = document.getElementById('searchHelp');
+    const btn = document.getElementById('button-addon2');
+
+    function filterFaq(){
+        let value = (input.value || '').toLowerCase();
         let helpItems = document.querySelectorAll('.faq-item');
 
         helpItems.forEach(item => {
             let itemText = item.textContent.toLowerCase();
-            item.style.display = itemText.includes(value) ? 'block' : 'none';
+            item.style.display = itemText.includes(value) ? '' : 'none';
         });
-    });
+    }
 
-    document.getElementById('button-addon2').addEventListener('click', function(e) {
+    input.addEventListener('keyup', filterFaq);
+    btn.addEventListener('click', function(e) {
         e.preventDefault();
-        document.getElementById('searchHelp').dispatchEvent(new Event('keyup'));
+        filterFaq();
     });
 });
 </script>
 @endsection
-<<<<<<< HEAD
-=======
-
-
-@section('styles')
-<style>
-    .helpdesk-cat-img{
-        width: 100% !important;
-        height: 260px !important;         /* silakan naik/turunkan sesuai selera */
-        object-fit: cover !important;     /* kunci: gambar akan ter-crop rapi */
-        object-position: center !important;
-        display: block !important;
-    }
-</style>
-@endsection
->>>>>>> dbf5348516c77631b2691dbbf0fe565ac3f1d7b3

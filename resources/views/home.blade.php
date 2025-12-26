@@ -31,7 +31,7 @@
 
   /* Ensure the hero heading matches the brand size */
   .hero-title {
-    font-size: 2.2rem;
+    font-size: 2.3rem;
     line-height: 1.05;
     margin-bottom: 0.25rem;
   }

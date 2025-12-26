@@ -7,28 +7,27 @@ use Illuminate\Http\Request;
 
 class KosController extends Controller
 {
-<<<<<<< HEAD
-    public function index()
-    {
-        $data = Kos::latest()->paginate(6);
-=======
     public function index(Request $request)
     {
-        // Query dasar
         $query = Kos::query()->latest();
+
+        // Filter keyword (nama/alamat)
+        // Jika keyword diisi, lakukan pencarian di seluruh data (nama/alamat) dan abaikan filter kategori
         if ($request->filled('keyword')) {
-            $query->where(function ($q) use ($request) {
-                $q->where('nama', 'like', '%' . $request->keyword . '%')
-                  ->orWhere('alamat', 'like', '%' . $request->keyword . '%');
+            $keyword = $request->keyword;
+
+            $query->where(function ($q) use ($keyword) {
+                $q->where('nama', 'like', "%{$keyword}%")
+                  ->orWhere('alamat', 'like', "%{$keyword}%");
             });
+        } else {
+            // Hanya terapkan filter kategori bila keyword TIDAK diisi
+            if ($request->filled('kategori')) {
+                $query->where('kategori_kos', $request->kategori);
+            }
         }
-        if ($request->filled('kategori')) {
-            $query->whereHas('kategoris', function ($q) use ($request) {
-                $q->where('nama', $request->kategori);
-            });
-        }
+
         $data = $query->paginate(6)->withQueryString();
->>>>>>> dbf5348516c77631b2691dbbf0fe565ac3f1d7b3
 
         return view('kos.index', compact('data'));
     }
@@ -41,20 +40,36 @@ class KosController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama'      => 'required|string|max:255',
-            'alamat'    => 'required|string|max:255',
-            'deskripsi' => 'nullable|string',
-            'foto_kos'  => 'nullable|string',
+            'nama'                  => 'required|string|max:255',
+            'kategori_kos'          => 'nullable|in:Kos Putra,Kos Putri,Kos Campur',
+            'alamat'                => 'required|string|max:255',
+            'nomor_wa'              => 'nullable|string|max:20',
+            'deskripsi'             => 'nullable|string',
+            'harga'                 => 'nullable|numeric|min:0',
+            'jumlah_kamar_tersedia' => 'nullable|integer|min:0',
+            'peraturan'             => 'nullable|string',
+            'fasilitas'             => 'nullable|string',
+            'foto_kos'              => 'nullable|string|max:500',
         ]);
 
-        Kos::create($request->only('nama', 'alamat', 'deskripsi', 'foto_kos'));
+        Kos::create($request->only([
+            'nama',
+            'kategori_kos',
+            'alamat',
+            'nomor_wa',
+            'deskripsi',
+            'harga',
+            'jumlah_kamar_tersedia',
+            'peraturan',
+            'fasilitas',
+            'foto_kos',
+        ]));
 
         return redirect()->route('kos.index')->with('success', 'Kos berhasil ditambahkan');
     }
 
     public function show(Kos $ko)
     {
-        // $ko adalah single Kos
         return view('kos.show', ['kos' => $ko]);
     }
 
@@ -66,14 +81,30 @@ class KosController extends Controller
     public function update(Request $request, Kos $ko)
     {
         $request->validate([
-            'nama'      => 'required|string|max:255',
-            'alamat'    => 'required|string|max:255',
-            'deskripsi' => 'nullable|string',
-            'foto_kos'  => 'nullable|string',
+            'nama'                  => 'required|string|max:255',
+            'alamat'                => 'required|string|max:255',
+            'nomor_wa'              => 'nullable|string|max:20',
+            'deskripsi'             => 'nullable|string',
+            'harga'                 => 'nullable|numeric|min:0',
+            'jumlah_kamar_tersedia' => 'nullable|integer|min:0',
+            'peraturan'             => 'nullable|string',
+            'fasilitas'             => 'nullable|string',
+            'foto_kos'              => 'nullable|string|max:500',
+            'kategori_kos'          => 'nullable|in:Kos Putra,Kos Putri,Kos Campur',
         ]);
 
-
-        $ko->update($request->only('nama', 'alamat', 'deskripsi', 'foto_kos'));
+        $ko->update($request->only([
+            'nama',
+            'kategori_kos',
+            'alamat',
+            'nomor_wa',
+            'deskripsi',
+            'harga',
+            'jumlah_kamar_tersedia',
+            'peraturan',
+            'fasilitas',
+            'foto_kos',
+        ]));
 
         return redirect()->route('kos.index')->with('success', 'Kos berhasil diupdate');
     }
@@ -84,4 +115,3 @@ class KosController extends Controller
         return redirect()->route('kos.index')->with('success', 'Kos berhasil dihapus');
     }
 }
-

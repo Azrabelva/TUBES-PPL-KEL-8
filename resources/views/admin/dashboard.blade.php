@@ -29,7 +29,7 @@
     .rule-item input { display: none; }
 
     .rule-item input:checked + .icon + span {
-        color: #0d6efd;
+        color: var(--theme-color);
         font-weight: 600;
     }
 

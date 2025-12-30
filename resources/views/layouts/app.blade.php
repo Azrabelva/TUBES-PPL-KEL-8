@@ -18,8 +18,8 @@
             --soft-purple-dark: var(--theme-dark);
             --muted: #6c757d;
 
-            /* Global background: deeper warm beige */
-            --bg-color: #e3c7b3; /* darker warm tone */
+            /* Global background: light blue */
+            --bg-color: rgb(200, 182, 226); /* light blue tone */
 
             /* Card, form, footer colors (darker & harmonious) */
             --card-bg: #d9bfa8; /* deeper warm tone for cards */
@@ -124,7 +124,10 @@
 {{-- NAVBAR --}}
 <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3 sticky-top">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('home') }}">KosNyaman</a>
+        <a class="navbar-brand d-flex align-items-center" href="{{ route('home') }}">
+            <img src="{{ asset('images/logokos.png') }}" alt="Logo" style="height: 50px; margin-right: 10px;">
+            KosNyaman
+        </a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
             <span class="navbar-toggler-icon"></span>

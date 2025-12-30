@@ -6,7 +6,7 @@
 <style>
   /* Home page card colors to match Kos */
   .page-home .card {
-    background: #fff8e1; /* soft light yellow */
+    background: #f1e1c4; /* cream */
     border-color: rgba(0,0,0,0.04);
     box-shadow: 0 6px 20px rgba(0,0,0,0.04);
   }

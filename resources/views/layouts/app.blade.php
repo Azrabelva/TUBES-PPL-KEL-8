@@ -121,6 +121,7 @@
 
 <body class="d-flex flex-column min-vh-100 @yield('body_class')">
 
+@if(!request()->routeIs('login') && !request()->routeIs('register'))
 {{-- NAVBAR --}}
 <nav class="navbar navbar-expand-lg bg-white shadow-sm py-3 sticky-top">
     <div class="container">
@@ -149,21 +150,27 @@
                     <a href="{{ route('register') }}" class="btn btn-primary btn-login {{ request()->routeIs('register') ? 'active-btn' : '' }}">Daftar</a>
                 @else
                     <li class="nav-item">
-                        <a href="{{ route('logout') }}" class="btn btn-danger btn-login">Logout</a>
+                        <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                            @csrf
+                            <button type="submit" class="btn btn-danger btn-login">Logout</button>
+                        </form>
                     </li>
                 @endif
             </ul>
         </div>
     </div>
 </nav>
+@endif
 
 {{-- PAGE CONTENT --}}
 <div class="container container-content">
     @yield('content')
 </div>
 
+@if(!request()->routeIs('login') && !request()->routeIs('register'))
 {{-- FOOTER --}}
 @include('layouts.footer')
+@endif
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

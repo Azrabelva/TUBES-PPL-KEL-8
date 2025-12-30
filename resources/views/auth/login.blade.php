@@ -2,6 +2,12 @@
 
 @section('content')
 
+{{-- HEADER KHUSUS LOGIN --}}
+<div class="text-center mb-5">
+    <img src="{{ asset('images/logokos.png') }}" alt="Logo" style="height: 100px; margin-bottom: 10px;">
+    <h1 class="fw-bold">KosNyaman</h1>
+</div>
+
 <div class="row justify-content-center">
     <div class="col-md-4">
 
@@ -48,7 +54,7 @@
 
             <div class="text-center mt-3">
                 <small class="text-muted">
-                    Belum punya akun? <a href="#">Daftar</a>
+                    Belum punya akun? <a href="{{ route('register') }}">Daftar</a>
                 </small>
             </div>
 

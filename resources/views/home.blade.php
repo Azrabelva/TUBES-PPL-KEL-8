@@ -1,53 +1,85 @@
 @extends('layouts.app')
 
-<<<<<<< HEAD
-@section('content')
-    <h3>Selamat datang di KosNyaman</h3>
-=======
 @section('body_class', 'page-home')
+
+@section('styles')
+<style>
+  /* Home page card colors to match Kos */
+  .page-home .card {
+    background: #fff8e1; /* soft light yellow */
+    border-color: rgba(0,0,0,0.04);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+  }
+  .page-home .card .card-body { background: transparent; }
+
+  /* Make diskon badge match theme purple */
+  .page-home .badge.bg-danger {
+    background: var(--theme-color) !important;
+    color: #fff !important;
+  }
+  .page-home .card.border.border-danger {
+    border-color: var(--soft-purple-dark) !important;
+  }
+
+  /* Brand on hero */
+  .brand-hero {
+    font-size: 2rem;
+    color: var(--soft-purple-dark);
+    display: inline-block;
+    letter-spacing: 0.2px;
+  }
+
+  /* Ensure the hero heading matches the brand size */
+  .hero-title {
+    font-size: 2.3rem;
+    line-height: 1.05;
+    margin-bottom: 0.25rem;
+  }
+</style>
+@endsection
 
 @section('content')
 <div class="container">
 
     {{-- HERO / JUDUL --}}
     <div class="mb-5 text-center">
-        <h3 class="fw-bold">Selamat datang di KosNyaman</h3>
+        <h3 class="fw-bold hero-title">Selamat Datang di <span class="brand-hero">KosNyaman</span></h3>
         <p class="text-muted">Temukan kos terbaik sesuai kebutuhanmu</p>
     </div>
 
     {{-- SEARCH BAR BERANDA --}}
-<div class="container mb-5">
-    <div class="card shadow-sm p-3">
-        <form method="GET" action="{{ route('kos.index') }}">
-            <div class="row g-3 align-items-center">
+    <div class="container mb-5">
+        <div class="card shadow-sm p-3">
+            <form method="GET" action="{{ route('kos.index') }}">
+                <div class="row g-3 align-items-center">
 
-                <div class="col-md-6">
-                    <input type="text"
-                           name="keyword"
-                           class="form-control"
-                           placeholder="Cari lokasi atau nama kos...">
+                    <div class="col-md-6">
+                        <input type="text"
+                               name="keyword"
+                               class="form-control"
+                               placeholder="Cari lokasi atau nama kos..."
+                               value="{{ request('keyword') }}">
+                    </div>
+
+                    <div class="col-md-4">
+                        <select class="form-select" name="kategori">
+                            <option value="">Semua tipe</option>
+                            <option value="Kos Putra"  {{ request('kategori')=='Kos Putra' ? 'selected' : '' }}>Kos Putra</option>
+                            <option value="Kos Putri"  {{ request('kategori')=='Kos Putri' ? 'selected' : '' }}>Kos Putri</option>
+                            <option value="Kos Campur" {{ request('kategori')=='Kos Campur' ? 'selected' : '' }}>Kos Campur</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary w-100">
+                            Cari
+                        </button>
+                    </div>
+
                 </div>
-
-                <div class="col-md-4">
-                    <select class="form-select" name="kategori">
-                        <option value="">Semua tipe</option>
-                        <option value="Kos Putra">Kos Putra</option>
-                        <option value="Kos Putri">Kos Putri</option>
-                        <option value="Kos Campur">Kos Campur</option>
-                    </select>
-                </div>
-
-                <div class="col-md-2">
-                    <button type="submit" class="btn btn-primary w-100">
-                        Cari
-                    </button>
-                </div>
-
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
-
 
     {{-- SECTION: REKOMENDASI KOS --}}
     <h4 class="mb-3 fw-bold">Rekomendasi Kos</h4>
@@ -55,10 +87,11 @@
         @forelse($rekomendasi as $k)
             <div class="col-md-4 mb-4">
                 <div class="card shadow-sm h-100">
-                    <img src="{{ asset(ltrim($k->foto_kos, '/')) }}"
+                    <img src="{{ $k->foto_kos ? asset(ltrim($k->foto_kos, '/')) : asset('images/default-kos.jpg') }}"
                          class="card-img-top"
                          style="height: 200px; object-fit: cover;"
-                         alt="Foto Kos">
+                         alt="Foto Kos"
+                         onerror="this.onerror=null;this.src='{{ asset('images/default-kos.jpg') }}';">
 
                     <div class="card-body">
                         <h5 class="mt-2">{{ $k->nama }}</h5>
@@ -66,13 +99,15 @@
 
                         <a href="{{ route('kos.show', $k->id) }}"
                            class="btn btn-outline-primary w-100">
-                           Lihat Detail
+                            Lihat Detail
                         </a>
                     </div>
                 </div>
             </div>
         @empty
-            <p class="text-muted">Belum ada data kos.</p>
+            <div class="col-12">
+                <p class="text-muted">Belum ada data kos.</p>
+            </div>
         @endforelse
     </div>
 
@@ -82,10 +117,11 @@
         @forelse($diskon as $k)
             <div class="col-md-4 mb-4">
                 <div class="card shadow-sm h-100 border border-danger">
-                    <img src="{{ asset(ltrim($k->foto_kos, '/')) }}"
+                    <img src="{{ $k->foto_kos ? asset(ltrim($k->foto_kos, '/')) : asset('images/default-kos.jpg') }}"
                          class="card-img-top"
                          style="height: 200px; object-fit: cover;"
-                         alt="Foto Kos">
+                         alt="Foto Kos"
+                         onerror="this.onerror=null;this.src='{{ asset('images/default-kos.jpg') }}';">
 
                     <div class="card-body">
                         <span class="badge bg-danger mb-2">Diskon</span>
@@ -117,16 +153,17 @@
 
                         <a href="{{ route('kos.show', $k->id) }}"
                            class="btn btn-danger w-100">
-                           Lihat Detail
+                            Lihat Detail
                         </a>
                     </div>
                 </div>
             </div>
         @empty
-            <p class="text-muted">Belum ada kos diskon.</p>
+            <div class="col-12">
+                <p class="text-muted">Belum ada kos diskon.</p>
+            </div>
         @endforelse
     </div>
 
 </div>
->>>>>>> dbf5348516c77631b2691dbbf0fe565ac3f1d7b3
 @endsection

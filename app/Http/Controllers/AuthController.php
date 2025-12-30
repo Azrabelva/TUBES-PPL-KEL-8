@@ -40,22 +40,22 @@ class AuthController extends Controller
     // =====================
     public function registerForm()
     {
-        return view('auth.register'); // buat view-nya
+        return view('auth.register');
     }
 
     public function register(Request $request)
     {
         $request->validate([
-            'name'                  => 'required|string|max:255',
-            'email'                 => 'required|email|unique:users,email',
-            'password'              => 'required|min:6|confirmed',
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|email|unique:users,email',
+            'password' => 'required|min:6|confirmed',
         ]);
 
         $user = User::create([
             'name'     => $request->name,
             'email'    => $request->email,
             'password' => bcrypt($request->password),
-            'role'     => 'user', // default user
+            'role'     => 'user',
         ]);
 
         Auth::login($user);
@@ -66,21 +66,13 @@ class AuthController extends Controller
     // =====================
     // LOGOUT
     // =====================
-<<<<<<< HEAD
     public function logout(Request $request)
-{
-    auth()->logout();
-
-    $request->session()->invalidate();
-    $request->session()->regenerateToken();
-
-    return redirect()->route('login');
-}
-=======
-    public function logout()
     {
         Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
         return redirect()->route('login');
     }
->>>>>>> dbf5348516c77631b2691dbbf0fe565ac3f1d7b3
 }

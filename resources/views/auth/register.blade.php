@@ -26,10 +26,10 @@
 
                 <div class="mb-3">
                     <label class="form-label">Nama Lengkap</label>
-                    <input 
-                        type="text" 
-                        name="name" 
-                        class="form-control" 
+                    <input
+                        type="text"
+                        name="name"
+                        class="form-control"
                         placeholder="Nama sesuai KTP"
                         required
                     >
@@ -37,10 +37,10 @@
 
                 <div class="mb-3">
                     <label class="form-label">Email</label>
-                    <input 
-                        type="email" 
-                        name="email" 
-                        class="form-control" 
+                    <input
+                        type="email"
+                        name="email"
+                        class="form-control"
                         placeholder="email@example.com"
                         required
                     >
@@ -48,20 +48,20 @@
 
                 <div class="mb-3">
                     <label class="form-label">Password</label>
-                    <input 
-                        type="password" 
-                        name="password" 
-                        class="form-control" 
-                        placeholder="Minimal 6 karakter"
+                    <input
+                        type="password"
+                        name="password"
+                        class="form-control"
+                        placeholder="Minimal 8 karakter"
                         required
                     >
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label">Konfirmasi Password</label>
-                    <input 
-                        type="password" 
-                        name="password_confirmation" 
+                    <input
+                        type="password"
+                        name="password_confirmation"
                         class="form-control"
                         placeholder="Ulangi password"
                         required

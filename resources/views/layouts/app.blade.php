@@ -113,6 +113,11 @@
         @media (max-width: 576px) {
             .container-content { padding-top: 110px; }
         }
+
+        /* Soft pink background for KOS page */
+        .page-kos {
+            background-color: #ffd4e5 !important;
+        }
     </style>
 
     {{-- STYLE KHUSUS PER HALAMAN --}}
